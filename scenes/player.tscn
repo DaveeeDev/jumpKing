@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgrsi86084ulq"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_oggfd"]
+[ext_resource type="PackedScene" uid="uid://deanbp0lhhhj1" path="res://scenes/skins/skin_giraffe.tscn" id="2_6hlm1"]
+[ext_resource type="PackedScene" uid="uid://ci7qrx388csfk" path="res://scenes/skins/skin_elephant.tscn" id="3_p7nip"]
+[ext_resource type="PackedScene" uid="uid://40365n4rk8v2" path="res://scenes/skins/skin_cow.tscn" id="4_d6kne"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jpp1s"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0g0as"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[node name="player" type="Node3D"]
+script = ExtResource("1_oggfd")
+
+[node name="skinDefault" type="Node3D" parent="."]
+visible = false
+
+[node name="body" type="CharacterBody3D" parent="skinDefault"]
+
+[node name="collision" type="CollisionShape3D" parent="skinDefault/body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_jpp1s")
+disabled = true
+
+[node name="cube" type="MeshInstance3D" parent="skinDefault/body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+mesh = SubResource("BoxMesh_0g0as")
+skeleton = NodePath("")
+
+[node name="skinGiraffe" parent="." instance=ExtResource("2_6hlm1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.199913)
+visible = false
+
+[node name="skinElephant" parent="." instance=ExtResource("3_p7nip")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0.125)
+visible = false
+
+[node name="skinCow" parent="." instance=ExtResource("4_d6kne")]
+transform = Transform3D(0.825, 0, 0, 0, 0.825, 0, 0, 0, 0.825, 0, 0, 0.12)
+visible = false

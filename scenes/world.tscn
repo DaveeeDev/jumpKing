@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0n0oqb5pkjn1"]
+
+[ext_resource type="PackedScene" uid="uid://bgrsi86084ulq" path="res://scenes/player.tscn" id="1_gile7"]
+[ext_resource type="PackedScene" uid="uid://f3hpdstdjp0i" path="res://scenes/hud.tscn" id="2_t5lfg"]
+[ext_resource type="PackedScene" uid="uid://c4ilafty3qamg" path="res://scenes/map.tscn" id="3_4vwmx"]
+
+[node name="world" type="Node3D"]
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0.353553, -0.612373, 0, 0.866026, 0.499999, 0.707107, -0.353553, 0.612373, -15, 15.5, 15)
+current = true
+fov = 25.0
+size = 25.0
+
+[node name="player" parent="." instance=ExtResource("1_gile7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.173648, -0.852869, 0.492404, 0, 0.5, 0.866025, -0.984808, -0.150384, 0.0868241, 2.79048, 3.7306, -2.66325)
+shadow_enabled = true
+
+[node name="hudLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="hudLayer" instance=ExtResource("2_t5lfg")]
+
+[node name="map" parent="." instance=ExtResource("3_4vwmx")]
+
+[node name="highScoreDisplay" type="Label3D" parent="."]
+transform = Transform3D(0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, -0.353553, 0.612372, -2, 0, 2)
+font_size = 70
+outline_size = 0

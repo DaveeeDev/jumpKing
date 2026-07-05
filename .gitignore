@@ -4,11 +4,5 @@
 export_presets.cfg
 builds/
 
-# Export ignores
-discord_game_sdk.dll
-discord_game_sdk_binding.dll
-jumpKing.exe
-jumpKing.pck
-
 # config templates
 config/

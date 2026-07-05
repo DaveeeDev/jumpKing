@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://40365n4rk8v2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e0j4g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tfl3m"]
+size = Vector3(0.6, 1.1, 1.2)
+
+[node name="skinCow" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="body" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.4, 0, 0, 0, 0.7, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="leg1" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.2, -0.15, -0.3, 0.25)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="leg2" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.2, 0.15, -0.3, 0.25)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="leg3" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.2, 0.15, -0.3, -0.25)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="leg4" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.2, -0.15, -0.3, -0.25)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="head" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.6, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.3, -0.45)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="horn1" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.1, 0, 0, 0, 0.2, -0.2, 0.55, -0.55)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="horn2" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.1, 0, 0, 0, 0.2, 0.2, 0.55, -0.55)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="snout" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 0, 0.2, -0.7)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="tail" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.4, 0, 0, 0, 0.1, 0, 0, 0.4)
+mesh = SubResource("BoxMesh_e0j4g")
+
+[node name="collision" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0503418, -0.149503)
+shape = SubResource("BoxShape3D_tfl3m")

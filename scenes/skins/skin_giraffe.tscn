@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://deanbp0lhhhj1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xe6yh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n3fj6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfv3r"]
+
+[node name="skinGiraffe" type="Node3D"]
+
+[node name="bodyGiraffe" type="CharacterBody3D" parent="."]
+
+[node name="body" type="MeshInstance3D" parent="bodyGiraffe"]
+transform = Transform3D(0.6, 0, 0, 0, 0.4, 0, 0, 0, 0.6, 0, 0.6, 0)
+mesh = SubResource("BoxMesh_xe6yh")
+
+[node name="head" type="MeshInstance3D" parent="bodyGiraffe"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.4, 0, 1.3, -0.5)
+mesh = SubResource("BoxMesh_xe6yh")
+
+[node name="leg1" type="MeshInstance3D" parent="bodyGiraffe"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.2, -0.2, 0.2, 0.2)
+mesh = SubResource("BoxMesh_n3fj6")
+skeleton = NodePath("../..")
+
+[node name="leg2" type="MeshInstance3D" parent="bodyGiraffe"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.2, 0.2, 0.2, 0.2)
+mesh = SubResource("BoxMesh_n3fj6")
+
+[node name="leg3" type="MeshInstance3D" parent="bodyGiraffe"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.2, 0.2, 0.2, -0.2)
+mesh = SubResource("BoxMesh_n3fj6")
+
+[node name="leg4" type="MeshInstance3D" parent="bodyGiraffe"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.2, -0.2, 0.2, -0.2)
+mesh = SubResource("BoxMesh_n3fj6")
+
+[node name="neck" type="MeshInstance3D" parent="bodyGiraffe"]
+transform = Transform3D(0.2, 0, 0, 0, 0.6, 0, 0, 0, 0.2, 0, 0.9, -0.4)
+mesh = SubResource("BoxMesh_n3fj6")
+skeleton = NodePath("../..")
+
+[node name="collision" type="CollisionShape3D" parent="bodyGiraffe"]
+transform = Transform3D(0.6, 0, 0, 0, 1.4, 0, 0, 0, 1, 0, 0.7, -0.2)
+shape = SubResource("BoxShape3D_lfv3r")
+disabled = true

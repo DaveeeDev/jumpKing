@@ -1,0 +1,708 @@
+[gd_scene load_steps=25 format=3 uid="uid://f3hpdstdjp0i"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_5qkw8"]
+[ext_resource type="Texture2D" uid="uid://b3deb3m8x6iu6" path="res://assets/progressBarBackground.png" id="2_ajpfk"]
+[ext_resource type="Texture2D" uid="uid://bod6hwwcg7rf7" path="res://assets/settingsIcon.png" id="2_tpgeh"]
+[ext_resource type="Texture2D" uid="uid://blroas8lbcpw" path="res://assets/questIcon.png" id="3_l4tn0"]
+[ext_resource type="Texture2D" uid="uid://do3f56cihemhg" path="res://assets/progressBarTexture.png" id="3_o552q"]
+[ext_resource type="Texture2D" uid="uid://utkr4yp5iwe" path="res://assets/skinIcon.png" id="4_edavp"]
+[ext_resource type="PackedScene" uid="uid://bgrsi86084ulq" path="res://scenes/player.tscn" id="7_drc1p"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_bm0wt"]
+keycode = 65
+
+[sub_resource type="InputEventKey" id="InputEventKey_aj0t3"]
+keycode = 4194319
+
+[sub_resource type="Shortcut" id="Shortcut_i4245"]
+events = [SubResource("InputEventKey_bm0wt"), SubResource("InputEventKey_aj0t3")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_nth74"]
+keycode = 68
+
+[sub_resource type="InputEventKey" id="InputEventKey_qndlt"]
+keycode = 4194321
+
+[sub_resource type="Shortcut" id="Shortcut_wu833"]
+events = [SubResource("InputEventKey_nth74"), SubResource("InputEventKey_qndlt")]
+
+[sub_resource type="Gradient" id="Gradient_5weru"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fjlhc"]
+gradient = SubResource("Gradient_5weru")
+width = 300
+height = 100
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p6gkm"]
+viewport_path = NodePath("skinViewPort")
+
+[sub_resource type="Gradient" id="Gradient_uyed1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v214n"]
+gradient = SubResource("Gradient_uyed1")
+width = 300
+height = 200
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_gt788"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dr0f8"]
+gradient = SubResource("Gradient_gt788")
+width = 200
+height = 200
+
+[sub_resource type="Gradient" id="Gradient_b8swj"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gmmpv"]
+gradient = SubResource("Gradient_b8swj")
+width = 200
+height = 200
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_qv2u3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s6jpt"]
+gradient = SubResource("Gradient_qv2u3")
+width = 200
+height = 200
+
+[node name="HUD" type="Node2D"]
+script = ExtResource("1_5qkw8")
+
+[node name="skinViewPort" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+msaa_3d = 1
+render_target_update_mode = 4
+
+[node name="skinCamera3D" type="Camera3D" parent="skinViewPort"]
+transform = Transform3D(-0.707107, 0.353553, -0.612372, 0, 0.866025, 0.5, 0.707107, 0.353553, -0.612372, -6, 5.5, -6)
+fov = 20.0
+
+[node name="player" parent="skinViewPort" instance=ExtResource("7_drc1p")]
+top_level = true
+
+[node name="skinLight" type="DirectionalLight3D" parent="skinViewPort"]
+transform = Transform3D(0.113099, -0.967395, -0.226615, 2.85236e-09, -0.228079, 0.973643, -0.993584, -0.110118, -0.0257955, 0, 0, -0.552108)
+
+[node name="steering" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -4.0
+offset_right = 10.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="left" type="Button" parent="steering"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+shortcut = SubResource("Shortcut_i4245")
+shortcut_in_tooltip = false
+
+[node name="right" type="Button" parent="steering"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+shortcut = SubResource("Shortcut_wu833")
+shortcut_in_tooltip = false
+
+[node name="buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 1313.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="buttonsVBox" type="VBoxContainer" parent="buttons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="top" type="Control" parent="buttons/buttonsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="topHBox" type="HBoxContainer" parent="buttons/buttonsVBox/top"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="fps" type="Label" parent="buttons/buttonsVBox/top/topHBox"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="scoreVBox" type="VBoxContainer" parent="buttons/buttonsVBox/top/topHBox"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="mapProgressBar" type="TextureProgressBar" parent="buttons/buttonsVBox/top/topHBox/scoreVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+mouse_filter = 2
+min_value = -16.0
+max_value = 65.0
+texture_under = ExtResource("2_ajpfk")
+texture_progress = ExtResource("3_o552q")
+
+[node name="scoreNumber" type="Label" parent="buttons/buttonsVBox/top/topHBox/scoreVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "5.678"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="currency" type="Label" parent="buttons/buttonsVBox/top/topHBox"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 45
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="middle" type="Control" parent="buttons/buttonsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="middleHBox" type="HBoxContainer" parent="buttons/buttonsVBox/middle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="leftSpacer" type="Control" parent="buttons/buttonsVBox/middle/middleHBox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="middleVBox" type="VBoxContainer" parent="buttons/buttonsVBox/middle/middleHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="middleHBox" type="HBoxContainer" parent="buttons/buttonsVBox/middle/middleHBox/middleVBox"]
+layout_mode = 2
+size_flags_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="settingsButton" type="TextureButton" parent="buttons/buttonsVBox/middle/middleHBox/middleVBox/middleHBox"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("2_tpgeh")
+
+[node name="modeButton" type="TextureButton" parent="buttons/buttonsVBox/middle/middleHBox/middleVBox/middleHBox"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = SubResource("GradientTexture2D_fjlhc")
+
+[node name="topSpacer" type="Control" parent="buttons/buttonsVBox/middle/middleHBox/middleVBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="skinButton" type="TextureButton" parent="buttons/buttonsVBox/middle/middleHBox/middleVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+texture_normal = ExtResource("4_edavp")
+
+[node name="bottomSpacer" type="Control" parent="buttons/buttonsVBox/middle/middleHBox/middleVBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="questButton" type="TextureButton" parent="buttons/buttonsVBox/middle/middleHBox/middleVBox"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+texture_normal = ExtResource("3_l4tn0")
+
+[node name="bottomSpacer" type="Control" parent="buttons/buttonsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="menus" type="Control" parent="."]
+show_behind_parent = true
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="behindMenuButton" type="Button" parent="menus"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="onDeathMenu" type="Control" parent="menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -300.0
+offset_right = 390.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="onDeathMenuBackground" type="ColorRect" parent="menus/onDeathMenu"]
+layout_mode = 0
+offset_right = 780.0
+offset_bottom = 600.0
+color = Color(0.262745, 0.290196, 0.341176, 1)
+
+[node name="statsContainer" type="VBoxContainer" parent="menus/onDeathMenu"]
+layout_mode = 0
+offset_right = 780.0
+offset_bottom = 600.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="tapsPerSecond" type="Label" parent="menus/onDeathMenu/statsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="betterThanPercent" type="ProgressBar" parent="menus/onDeathMenu/statsContainer"]
+custom_minimum_size = Vector2(600, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+step = 1.0
+show_percentage = false
+
+[node name="settingsMenu" type="Control" parent="menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -900.0
+offset_right = 390.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="settingsMenuBackground" type="ColorRect" parent="menus/settingsMenu"]
+layout_mode = 0
+offset_right = 780.0
+offset_bottom = 1800.0
+color = Color(0.262745, 0.290196, 0.341176, 1)
+
+[node name="settingsContainer" type="VBoxContainer" parent="menus/settingsMenu"]
+layout_mode = 0
+offset_right = 780.0
+offset_bottom = 1800.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="paddingVolumeButton" type="Control" parent="menus/settingsMenu/settingsContainer"]
+custom_minimum_size = Vector2(780, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menus/settingsMenu/settingsContainer/paddingVolumeButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -110.0
+offset_right = 300.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="volumeButton" type="Button" parent="menus/settingsMenu/settingsContainer/paddingVolumeButton/VBoxContainer"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 70
+toggle_mode = true
+text = "Volume On"
+
+[node name="HSlider" type="HSlider" parent="menus/settingsMenu/settingsContainer/paddingVolumeButton/VBoxContainer"]
+modulate = Color(0.65098, 0.65098, 0.65098, 1)
+custom_minimum_size = Vector2(600, 30)
+layout_mode = 2
+focus_mode = 0
+
+[node name="paddingVibrateButton" type="Control" parent="menus/settingsMenu/settingsContainer"]
+custom_minimum_size = Vector2(780, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="vibrateButton" type="Button" parent="menus/settingsMenu/settingsContainer/paddingVibrateButton"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 70
+toggle_mode = true
+text = "Vibration On"
+
+[node name="paddingResetButton" type="Control" parent="menus/settingsMenu/settingsContainer"]
+custom_minimum_size = Vector2(780, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="resetButton" type="Button" parent="menus/settingsMenu/settingsContainer/paddingResetButton"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 70
+text = "Reset Game"
+
+[node name="skinMenu" type="Control" parent="menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -325.0
+offset_right = 390.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="skinMenuBackground" type="ColorRect" parent="menus/skinMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0.290196, 0.341176, 1)
+
+[node name="elementContainerVertical" type="VBoxContainer" parent="menus/skinMenu"]
+custom_minimum_size = Vector2(780, 600)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="elementContainerHorizontal" type="HBoxContainer" parent="menus/skinMenu/elementContainerVertical"]
+custom_minimum_size = Vector2(780, 600)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="leftButton" type="Button" parent="menus/skinMenu/elementContainerVertical/elementContainerHorizontal"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = "<"
+
+[node name="skinSelect" type="VBoxContainer" parent="menus/skinMenu/elementContainerVertical/elementContainerHorizontal"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="skinCameraOutput" type="TextureRect" parent="menus/skinMenu/elementContainerVertical/elementContainerHorizontal/skinSelect"]
+process_mode = 3
+layout_mode = 2
+texture = SubResource("ViewportTexture_p6gkm")
+
+[node name="skinSelectButton" type="Button" parent="menus/skinMenu/elementContainerVertical/elementContainerHorizontal/skinSelect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Error"
+
+[node name="rightButton" type="Button" parent="menus/skinMenu/elementContainerVertical/elementContainerHorizontal"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 30
+text = ">"
+
+[node name="questMenu" type="Control" parent="menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -450.0
+offset_right = 390.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="questMenuBackground" type="ColorRect" parent="menus/questMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0.290196, 0.341176, 1)
+
+[node name="questContainerHorizontal" type="HBoxContainer" parent="menus/questMenu"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 780.0
+offset_bottom = 909.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="questContainerVertical" type="VBoxContainer" parent="menus/questMenu/questContainerHorizontal"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="questContainer1" type="VBoxContainer" parent="menus/questMenu/questContainerHorizontal/questContainerVertical"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="questButton1" type="Button" parent="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer1"]
+custom_minimum_size = Vector2(680, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+text = "ERROR: quest didn't load"
+
+[node name="progressBarQuest1" type="ProgressBar" parent="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer1"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+step = 1.0
+value = 50.0
+allow_greater = true
+show_percentage = false
+
+[node name="questContainer2" type="VBoxContainer" parent="menus/questMenu/questContainerHorizontal/questContainerVertical"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="questButton2" type="Button" parent="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer2"]
+custom_minimum_size = Vector2(680, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+text = "ERROR: quest didn't load"
+
+[node name="progressBarQuest2" type="ProgressBar" parent="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+step = 1.0
+value = 20.0
+allow_greater = true
+show_percentage = false
+
+[node name="questContainer3" type="VBoxContainer" parent="menus/questMenu/questContainerHorizontal/questContainerVertical"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="questButton3" type="Button" parent="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer3"]
+custom_minimum_size = Vector2(680, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+text = "ERROR: quest didn't load"
+
+[node name="progressBarQuest3" type="ProgressBar" parent="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer3"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+step = 1.0
+value = 75.0
+allow_greater = true
+show_percentage = false
+
+[node name="modeMenu" type="Control" parent="menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -450.0
+offset_right = 390.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="modeMenuBackground" type="ColorRect" parent="menus/modeMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0.290196, 0.341176, 1)
+
+[node name="modeContainerVertical" type="VBoxContainer" parent="menus/modeMenu/modeMenuBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="normalModeContainerHorizontal" type="HBoxContainer" parent="menus/modeMenu/modeMenuBackground/modeContainerVertical"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 0
+
+[node name="normalModeButton" type="TextureButton" parent="menus/modeMenu/modeMenuBackground/modeContainerVertical/normalModeContainerHorizontal"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture_normal = SubResource("GradientTexture2D_v214n")
+
+[node name="normalExtremeModeButton" type="TextureButton" parent="menus/modeMenu/modeMenuBackground/modeContainerVertical/normalModeContainerHorizontal"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture_normal = SubResource("GradientTexture2D_dr0f8")
+
+[node name="infiniteModeContainerHorizontal" type="HBoxContainer" parent="menus/modeMenu/modeMenuBackground/modeContainerVertical"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 0
+
+[node name="infiniteModeButton" type="TextureButton" parent="menus/modeMenu/modeMenuBackground/modeContainerVertical/infiniteModeContainerHorizontal"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture_normal = SubResource("GradientTexture2D_gmmpv")
+
+[node name="infiniteExtremeModeButton" type="TextureButton" parent="menus/modeMenu/modeMenuBackground/modeContainerVertical/infiniteModeContainerHorizontal"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture_normal = SubResource("GradientTexture2D_s6jpt")
+flip_v = true
+
+[connection signal="pressed" from="steering/left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="steering/right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="buttons/buttonsVBox/middle/middleHBox/middleVBox/middleHBox/settingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="buttons/buttonsVBox/middle/middleHBox/middleVBox/middleHBox/modeButton" to="." method="_on_mode_button_pressed"]
+[connection signal="pressed" from="buttons/buttonsVBox/middle/middleHBox/middleVBox/skinButton" to="." method="_on_skin_button_pressed"]
+[connection signal="pressed" from="buttons/buttonsVBox/middle/middleHBox/middleVBox/questButton" to="." method="_on_quest_button_pressed"]
+[connection signal="pressed" from="menus/behindMenuButton" to="." method="_on_behind_menu_button_pressed"]
+[connection signal="pressed" from="menus/settingsMenu/settingsContainer/paddingVolumeButton/VBoxContainer/volumeButton" to="." method="_on_volume_button_pressed"]
+[connection signal="pressed" from="menus/settingsMenu/settingsContainer/paddingVibrateButton/vibrateButton" to="." method="_on_vibrate_button_pressed"]
+[connection signal="pressed" from="menus/settingsMenu/settingsContainer/paddingResetButton/resetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="menus/skinMenu/elementContainerVertical/elementContainerHorizontal/leftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="menus/skinMenu/elementContainerVertical/elementContainerHorizontal/skinSelect/skinSelectButton" to="." method="_on_skin_select_button_pressed"]
+[connection signal="pressed" from="menus/skinMenu/elementContainerVertical/elementContainerHorizontal/rightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer1/questButton1" to="." method="_on_quest_button_1_pressed"]
+[connection signal="pressed" from="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer2/questButton2" to="." method="_on_quest_button_2_pressed"]
+[connection signal="pressed" from="menus/questMenu/questContainerHorizontal/questContainerVertical/questContainer3/questButton3" to="." method="_on_quest_button_3_pressed"]
+[connection signal="pressed" from="menus/modeMenu/modeMenuBackground/modeContainerVertical/normalModeContainerHorizontal/normalModeButton" to="." method="_on_normal_mode_button_pressed"]
+[connection signal="pressed" from="menus/modeMenu/modeMenuBackground/modeContainerVertical/normalModeContainerHorizontal/normalExtremeModeButton" to="." method="_on_normal_extreme_mode_button_pressed"]
+[connection signal="pressed" from="menus/modeMenu/modeMenuBackground/modeContainerVertical/infiniteModeContainerHorizontal/infiniteModeButton" to="." method="_on_infinite_mode_button_pressed"]
+[connection signal="pressed" from="menus/modeMenu/modeMenuBackground/modeContainerVertical/infiniteModeContainerHorizontal/infiniteExtremeModeButton" to="." method="_on_infinite_extreme_mode_button_pressed"]

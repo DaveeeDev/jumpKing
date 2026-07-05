@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ilafty3qamg"]
+
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_eoa0l"]
+[ext_resource type="PackedScene" uid="uid://css2kiu4hhm3n" path="res://scenes/block.tscn" id="2_6wc6m"]
+
+[node name="map" type="Node3D"]
+script = ExtResource("1_eoa0l")
+
+[node name="block" parent="." instance=ExtResource("2_6wc6m")]
+visible = false
