@@ -4,7 +4,7 @@ This is a mobile clone of the game *Jump King*, which unfortunately is no longer
 
 ---
 
-## 🕹️ Gameplay & Features
+## Gameplay & Features
 
 The core mechanic is simple but addictive: you tap either **left/A** or **right/D** to follow a randomly generated zigzag staircase and climb as high as you can, as fast as you can.
 
@@ -23,7 +23,7 @@ The core mechanic is simple but addictive: you tap either **left/A** or **right/
 
 ---
 
-## 🛠️ Tech Stack & Learning
+## Tech Stack & Learning
 * **Engine:** Godot
 * **Style:** 2.5D (Isometric/Orthographic feel using Godot's engine capabilities)
 * **Status:** Mostly finished backend, UI and extra modes are Work in Progress (WIP).
