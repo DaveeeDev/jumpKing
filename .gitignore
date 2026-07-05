@@ -6,3 +6,6 @@ builds/
 
 # config templates
 config/
+
+# temporary files
+*.tmp
